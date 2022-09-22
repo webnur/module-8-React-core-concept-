@@ -1,53 +1,62 @@
 import logo from './logo.svg';
 import './App.css';
-
-const singers = [
-  {name: 'sanina', job:'singer'},
-  {name: 'jabina', job:'super'},
-  {name: 'kabila', job:'actor'},
-  {name: 'salman shah', job:'hero'},
-]
+import { useEffect, useState } from 'react';
 
 function App() {
-  // const nayoks = ['sakib', 'alomgir', 'joshim', 'bapparaz']
   return (
-    <div className='app'>
-      
-     {/* {
-      nayoks.map(nayok => <Person name={nayok}></Person>)
-     } */}
+   <div>
+    {/* <Counter></Counter> */}
+    <ExternalUsers></ExternalUsers>
 
-     {
-      singers.map(singer => <Person name={singer.name}></Person>)
-     }
-
-
-      {/* <Person name={nayoks[0]} naika="opu bissas"></Person>
-      <Person name={nayoks[1]} naika="chekakhor"></Person>
-      <Person name={nayoks[2]} naika="chekakhor"></Person> */}
-
-
-    
-      <p>another person added</p>
-      <Friend name="Shamsul hok" phone="0927733"></Friend>
     </div>
   );
 }
 
-function Person (props){
-  return (
-    <div className="container">
-      <h3>Name: {props.name}</h3>
-      <h5>naika: {props.naika}</h5>
-    </div>
-  )
-} 
-function Friend (props){
+
+function ExternalUsers (){
+const [users, setUsers] = useState([]);
+
+useEffect(() => {
+  fetch('https://jsonplaceholder.typicode.com/users')
+  .then(res => res.json())
+  .then(data => setUsers(data))
+}, [])
 
   return (
-    <div className='container'>
-      <h4>name: {props.name}</h4>
-      <h6>phone: {props.phone}</h6>
+    <div>
+      <h2>External Users</h2>
+     <p>{users.length}</p> 
+     {
+      users.map(user => <User name={user.name} email={user.email}></User>)
+     }
+    </div>
+  );
+}
+
+function User (props){
+  return (
+  <div style={{border: '2px solid red', margin: '20px', textAlign: 'center'}}>
+      <h3>name: {props.name}</h3>
+      <p>{props.email}</p>
+    </div>
+  )
+}
+
+function Counter () {
+  const [count, setCount] = useState(33);
+
+  const increaseCount = () => setCount(count + 1);
+  const decreaseCount = () => setCount(count - 1);
+//  const increaseCount = () =>{
+//   const newCount = count + 1;
+//   setCount(newCount)
+//  }
+
+  return (
+    <div>
+      <h3>Count: {count}</h3>
+      <button onClick={increaseCount}>Increse</button>
+      <button onClick={decreaseCount}>Decrease</button>
     </div>
   )
 }
