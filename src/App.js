@@ -1,54 +1,45 @@
 import logo from './logo.svg';
 import './App.css';
+// import { useEffect, useState } from 'react';
 
-const singers = [
-  {name: 'sanina', job:'singer'},
-  {name: 'jabina', job:'super'},
-  {name: 'kabila', job:'actor'},
-  {name: 'salman shah', job:'hero'},
-]
+import Countries from './components/Countries/Countries';
 
 function App() {
-  // const nayoks = ['sakib', 'alomgir', 'joshim', 'bapparaz']
   return (
-    <div className='app'>
-      
-     {/* {
-      nayoks.map(nayok => <Person name={nayok}></Person>)
-     } */}
-
-     {
-      singers.map(singer => <Person name={singer.name}></Person>)
-     }
-
-
-      {/* <Person name={nayoks[0]} naika="opu bissas"></Person>
-      <Person name={nayoks[1]} naika="chekakhor"></Person>
-      <Person name={nayoks[2]} naika="chekakhor"></Person> */}
-
-
-    
-      <p>another person added</p>
-      <Friend name="Shamsul hok" phone="0927733"></Friend>
+    <div className="App">
+     <Countries></Countries>
     </div>
   );
 }
 
-function Person (props){
-  return (
-    <div className="container">
-      <h3>Name: {props.name}</h3>
-      <h5>naika: {props.naika}</h5>
-    </div>
-  )
-} 
-function Friend (props){
 
+
+
+/*function LoadCountries (){
+  const [countries, setCountries] = useState([]);
+  useEffect(() => {
+    fetch('https://restcountries.com/v3.1/all')
+    .then(response => response.json())
+    .then(data => setCountries(data))
+  },[])
   return (
-    <div className='container'>
-      <h4>name: {props.name}</h4>
-      <h6>phone: {props.phone}</h6>
+    <div>
+      <h1>Visiting Every  country of the world!!</h1>
+      <h4>Available Countries: {countries.length}</h4>
+      {
+        countries.map(country => <Country name={country.name.common} population={country.population
+        }></Country>)
+      }
     </div>
   )
 }
+
+function Country (props){
+  return (
+    <div>
+      <h3>name: {props.name}</h3>
+      <h4>population: {props.population}</h4>
+    </div>
+  )
+} */
 export default App;
